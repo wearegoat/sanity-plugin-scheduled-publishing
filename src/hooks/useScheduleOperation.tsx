@@ -6,6 +6,8 @@ import {Schedule} from '../types'
 import getErrorMessage from '../utils/getErrorMessage'
 import useTimeZone from './useTimeZone'
 import {useScheduleApi} from './useScheduleApi'
+import {useConfig} from '../contexts/config'
+import {useClient, useSchema} from 'sanity'
 
 // Custom events
 export enum ScheduleEvents {
@@ -23,6 +25,10 @@ export type ScheduleCreateEvent = {
 
 export type ScheduleDeleteEvent = {
   scheduleId: string
+  documents: {
+    documentId: string
+    documentType?: string
+  }[]
 }
 
 export type ScheduleDeleteMultipleEvent = {
@@ -65,9 +71,12 @@ export const scheduleCustomEvent = <
 ): CustomEvent<D> => new CustomEvent(name, payload)
 
 export default function useScheduleOperation() {
+  const config = useConfig()
   const toast = useToast()
   const {formatDateTz} = useTimeZone()
   const api = useScheduleApi()
+  const client = useClient({apiVersion: '2022-09-01'})
+  const schema = useSchema()
 
   async function createSchedule({
     date,
@@ -79,6 +88,21 @@ export default function useScheduleOperation() {
     documentId: string
   }) {
     try {
+      if (config.onCreate) {
+        toast.push({
+          closable: false,
+          status: 'warning',
+          duration: 3000,
+          description: (
+            <ToastDescription
+              body={"Creating schedule. Don't close this tab or browser window."}
+              title="Creating schedule"
+            />
+          ),
+        })
+      }
+      await config.onCreate?.({date, documentId}, {client, schema})
+
       const data = await api.create({date, documentId})
 
       window.dispatchEvent(
@@ -129,12 +153,28 @@ export default function useScheduleOperation() {
     schedule: Schedule
   }) {
     try {
+      if (config.onDelete) {
+        toast.push({
+          closable: false,
+          status: 'warning',
+          duration: 3000,
+          description: (
+            <ToastDescription
+              body={"Deleting schedule. Don't close this tab or browser window."}
+              title="Deleting schedule"
+            />
+          ),
+        })
+      }
+      await config.onDelete?.({documentId: schedule?.documents?.[0]?.documentId}, {client, schema})
+
       await api.delete({scheduleId: schedule?.id})
 
       window.dispatchEvent(
         scheduleCustomEvent(ScheduleEvents.delete, {
           detail: {
             scheduleId: schedule?.id,
+            documents: schedule?.documents,
           },
         })
       )
@@ -245,6 +285,21 @@ export default function useScheduleOperation() {
     schedule: Schedule
   }) {
     try {
+      if (config.onPublish) {
+        toast.push({
+          closable: false,
+          status: 'warning',
+          duration: 3000,
+          description: (
+            <ToastDescription
+              body={"Publishing schedule. Don't close this tab or browser window."}
+              title="Publishing schedule"
+            />
+          ),
+        })
+      }
+      await config.onPublish?.({documentId: schedule?.documents?.[0]?.documentId}, {client, schema})
+
       const scheduleId = schedule.id
       await api.publish({scheduleId})
 
@@ -274,16 +329,37 @@ export default function useScheduleOperation() {
   async function updateSchedule({
     date,
     displayToast = true,
-    scheduleId,
+    schedule,
   }: {
     date: string
     displayToast?: boolean
-    scheduleId: string
+    schedule: Schedule
   }) {
     try {
-      await api.update({documentSchedule: {executeAt: date}, scheduleId})
+      if (config.onUpdate) {
+        toast.push({
+          closable: false,
+          status: 'warning',
+          duration: 3000,
+          description: (
+            <ToastDescription
+              body={"Updating schedule. Don't close this tab or browser window."}
+              title="Updating schedule"
+            />
+          ),
+        })
+      }
+      // Needs documentId
+      await config.onUpdate?.(
+        {date, documentId: schedule.documents[0].documentId},
+        {client, schema}
+      )
 
-      window.dispatchEvent(scheduleCustomEvent(ScheduleEvents.update, {detail: {date, scheduleId}}))
+      await api.update({documentSchedule: {executeAt: date}, scheduleId: schedule.id})
+
+      window.dispatchEvent(
+        scheduleCustomEvent(ScheduleEvents.update, {detail: {date, scheduleId: schedule.id}})
+      )
 
       if (displayToast) {
         toast.push({

@@ -26,9 +26,9 @@ const DialogScheduleEdit = (props: DialogScheduleEditProps) => {
     // Update schedule then close self
     updateSchedule({
       date: formData.date,
-      scheduleId: schedule.id,
+      schedule: schedule,
     }).then(onClose)
-  }, [schedule.id, updateSchedule, onClose, formData?.date])
+  }, [schedule, updateSchedule, onClose, formData?.date])
 
   return (
     <Dialog

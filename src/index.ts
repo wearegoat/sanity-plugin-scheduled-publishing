@@ -1,10 +1,14 @@
+import React from 'react'
 import {CalendarIcon} from '@sanity/icons'
-import {definePlugin} from 'sanity'
+import {definePlugin, StudioLayout} from 'sanity'
 import {route} from 'sanity/router'
 import resolveDocumentActions from './documentActions'
 import resolveDocumentBadges from './documentBadges'
 import Tool from './tool/Tool'
 import {DocumentBannerInput} from './inputResolver'
+import {createHandler, deleteHandler, publishHandler, updateHandler} from './eventListener'
+import {ConfigProvider} from './contexts/config'
+import usePollSchedules from './hooks/usePollSchedules'
 
 export {ScheduleAction} from './documentActions/schedule'
 export {ScheduledBadge} from './documentBadges/scheduled'
@@ -12,7 +16,18 @@ export {EditScheduleForm} from './components/editScheduleForm/EditScheduleForm'
 export {resolveDocumentActions, resolveDocumentBadges}
 export type {Schedule} from './types'
 
-export const scheduledPublishing = definePlugin({
+export type {Schedule} from './types'
+
+export {usePollSchedules}
+
+export interface Config {
+  onCreate?: createHandler
+  onDelete?: deleteHandler
+  onUpdate?: updateHandler
+  onPublish?: publishHandler
+}
+
+export const scheduledPublishing = definePlugin<Config>((config) => ({
   name: 'scheduled-publishing',
 
   document: {
@@ -23,6 +38,17 @@ export const scheduledPublishing = definePlugin({
   form: {
     components: {
       input: DocumentBannerInput,
+    },
+  },
+
+  studio: {
+    components: {
+      layout: (props) =>
+        /* eslint-disable react/no-children-prop */
+        React.createElement(ConfigProvider, {
+          value: config,
+          children: React.createElement(StudioLayout, {...props, ...config}),
+        }),
     },
   },
 
@@ -38,4 +64,4 @@ export const scheduledPublishing = definePlugin({
       },
     ]
   },
-})
+}))
