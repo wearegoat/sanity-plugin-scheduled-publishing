@@ -1,4 +1,5 @@
-import React, {createContext, ReactNode, useContext} from 'react'
+import React, {createContext, useContext} from 'react'
+import {LayoutProps} from 'sanity'
 import {createHandler, deleteHandler, publishHandler, updateHandler} from '../eventListener'
 
 export interface Config {
@@ -10,10 +11,12 @@ export interface Config {
 
 const DocumentActionPropsContext = createContext<Config | undefined>(undefined)
 
-function ConfigProvider({children, value}: {children: ReactNode; value: Config}) {
+type ConfigProviderProps = LayoutProps & {config: Config}
+
+function ConfigProvider(props: ConfigProviderProps) {
   return (
-    <DocumentActionPropsContext.Provider value={value}>
-      {children}
+    <DocumentActionPropsContext.Provider value={props.config}>
+      {props.renderDefault(props)}
     </DocumentActionPropsContext.Provider>
   )
 }

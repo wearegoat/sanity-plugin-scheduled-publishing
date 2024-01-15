@@ -1,6 +1,5 @@
-import React from 'react'
 import {CalendarIcon} from '@sanity/icons'
-import {definePlugin, StudioLayout} from 'sanity'
+import {definePlugin} from 'sanity'
 import {route} from 'sanity/router'
 import resolveDocumentActions from './documentActions'
 import resolveDocumentBadges from './documentBadges'
@@ -42,12 +41,7 @@ export const scheduledPublishing = definePlugin<Config>((config) => ({
 
   studio: {
     components: {
-      layout: (props) =>
-        /* eslint-disable react/no-children-prop */
-        React.createElement(ConfigProvider, {
-          value: config,
-          children: React.createElement(StudioLayout, {...props, ...config}),
-        }),
+      layout: (props) => ConfigProvider({...props, config}),
     },
   },
 

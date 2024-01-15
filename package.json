@@ -1,18 +1,18 @@
 {
-  "name": "@sanity/scheduled-publishing",
+  "name": "@wearegoat/scheduled-publishing",
   "version": "1.2.4",
   "description": "",
   "keywords": [
     "sanity",
     "plugin"
   ],
-  "homepage": "https://github.com/sanity-io/sanity-plugin-scheduled-publishing#readme",
+  "homepage": "https://github.com/wearegoat/sanity-plugin-scheduled-publishing#readme",
   "bugs": {
     "url": "https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:sanity-io/sanity-plugin-scheduled-publishing.git"
+    "url": "git@github.com:wearegoat/sanity-plugin-scheduled-publishing.git"
   },
   "license": "MIT",
   "author": "Sanity.io <hello@sanity.io>",
@@ -113,6 +113,5 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
-  },
-  "sanityExchangeUrl": "https://www.sanity.io/plugins/scheduled-publishing"
+  }
 }
