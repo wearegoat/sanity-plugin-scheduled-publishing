@@ -5,6 +5,47 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.2.3...v1.2.4) (2024-01-12)
+
+### Bug Fixes
+
+- ensure time zone button tooltips display correctly, update position in schedule headers ([44aa2c4](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/44aa2c4d291202470caf0024420d5de363d22ae0))
+- migrate to react-virtual v3 ([e65c21f](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/e65c21f54240e434a06e6e5894393dec9c1e5bc3))
+- simplify and correctly render tool filter tab buttons ([4fb90bf](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/4fb90bfaa651db97ba1110d96b72129510f0eb5a))
+
+## [1.2.3](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.2.2...v1.2.3) (2024-01-10)
+
+### Bug Fixes
+
+- **deps:** widen @sanity/ui peer dependency range ([9ad8380](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/9ad838035799ff8b796eb4aeb0b78e84a723e29b))
+
+## [1.2.2](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.2.1...v1.2.2) (2023-11-24)
+
+### Bug Fixes
+
+- add fallback placements to datetime input popover ([5377de9](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/5377de9ca56f4c4b17c4947a593caf20c2d3673f))
+
+## [1.2.1](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.2.0...v1.2.1) (2023-08-11)
+
+### Bug Fixes
+
+- ensure datepicker popovers render and constrain correctly within portals ([06d3d0e](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/06d3d0efeb894d44bf0722b7b8f94f0716bb1e98))
+
+## [1.2.0](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.1.1...v1.2.0) (2023-07-31)
+
+### Features
+
+- export `Schedule` ([#71](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues/71)) ([1c12063](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/1c120635b440c2ee32ddeb9123ddf15135c5f02c))
+
+### Bug Fixes
+
+- broken link ([d6c43e4](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/d6c43e4f4d4d975d24799a5e61ae7f462fdf8765))
+- **deps:** update dependencies (non-major) ([#73](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues/73)) ([c23f611](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/c23f6115e7627bd82e14e2fd132d933280e8708f))
+- **deps:** update dependency date-fns-tz to v2 ([#57](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues/57)) ([99e5479](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/99e5479ee1d7c255a1fa53c011a3f6d540f88e07))
+- **deps:** update sanity monorepo to v3.11.5 ([#74](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues/74)) ([d7ad94f](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/d7ad94f9049d0cfdf8f8223c0ebe8d4352ea717c))
+- internalize `ValidationList` component ([#81](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/issues/81)) ([6e5abb5](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/6e5abb5a2d0c432ab7af87d7c4215eb142c2b090))
+- link typo ([28b8d75](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/commit/28b8d75b141de1675c04fd315b012de44e3a3e01))
+
 ## [1.1.1](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/compare/v1.1.0...v1.1.1) (2023-02-01)
 
 ### Bug Fixes
