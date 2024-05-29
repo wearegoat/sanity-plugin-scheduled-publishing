@@ -26,7 +26,7 @@ export interface Config {
 }
 
 export const scheduledPublishing = definePlugin<Config>((config) => ({
-  name: 'scheduled-publishing',
+  name: 'forked-scheduled-publishing',
 
   document: {
     actions: (prev) => resolveDocumentActions(prev),
