@@ -1,6 +1,7 @@
 # Scheduled Publishing plugin for Sanity.io
 
-> This is a fork of the now vendored scheduled publishing plugin. 
+> This is a fork of the now vendored scheduled publishing plugin.
+> The plugin itself is deployed as a private npm package 
 
 ## What is it?
 
