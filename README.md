@@ -1,7 +1,6 @@
 # Scheduled Publishing plugin for Sanity.io
 
-> This is a **Sanity Studio v3** plugin.
-> For the v2 version, please refer to the [v2-branch](https://github.com/sanity-io/sanity-plugin-scheduled-publishing/tree/studio-v2).
+> This is a fork of the now vendored scheduled publishing plugin. 
 
 ## What is it?
 
