@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/wearegoat/sanity-plugin-scheduled-publishing/compare/v1.0.1...v1.0.2) (2024-05-29)
+
+### Bug Fixes
+
+- **readme:** Fix readme ([ca635c8](https://github.com/wearegoat/sanity-plugin-scheduled-publishing/commit/ca635c87a6032c1e54aa6d78abcc5fc885b09828))
+
 ## 1.0.0 (2024-01-15)
 
 ### ⚠ BREAKING CHANGES
