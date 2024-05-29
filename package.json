@@ -1,7 +1,7 @@
 {
   "name": "@wearegoat/scheduled-publishing",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "Forked scheduled publishing sanity plugin",
   "keywords": [
     "sanity",
     "plugin"
